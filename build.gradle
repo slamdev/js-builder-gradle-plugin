@@ -1,0 +1,33 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'groovy'
+    id 'idea'
+    id 'com.gradle.plugin-publish' version '0.9.10'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+ext {
+    failOnBadCoverage = false
+    failOnStaticChecks = true
+}
+
+apply from: "${rootProject.projectDir}/gradle/validation.gradle"
+
+repositories {
+    mavenCentral()
+}
+
+pluginBundle {
+    website = 'https://github.com/slamdev/js-builder-gradle-plugin'
+    vcsUrl = 'https://github.com/slamdev/js-builder-gradle-plugin'
+    description = 'JavaScript builder'
+    tags = ['javascript']
+    plugins {
+        swaggerPlugin {
+            id = 'com.github.slamdev.js-builder'
+            displayName = 'JavaScript builder'
+        }
+    }
+}
